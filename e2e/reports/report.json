@@ -1,0 +1,262 @@
+[
+  {
+    "tipo": "Aplicação Local",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Web App",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Mobile",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "SaaS",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Automação",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Bot 24h",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "API / Backend",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Sistema Industrial",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "IA",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Dashboard",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Desktop",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Jogo",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "IoT",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "PWA",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Edge",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Embedded",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Data Pipeline",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Realtime",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Admin",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  },
+  {
+    "tipo": "Sistema Híbrido",
+    "selectFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "backendNextEnabled": true,
+      "reachedInfra": true
+    }
+  }
+]

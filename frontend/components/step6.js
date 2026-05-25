@@ -57,7 +57,7 @@ export function renderStep6(dados) {
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="servicos" value="docker" id="docker">
                         <label class="form-check-label" for="docker">Docker/Docker Compose</label>
-                        <div class="form-text text-muted">Containerização e orquestração local; `docker-compose` facilita ambientes multi-containers durante desenvolvimento.</div>
+                        <div class="form-text text-muted">Containerização e orquestração local; <code>docker-compose</code> facilita ambientes multi-containers durante desenvolvimento.</div>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="servicos" value="kubernetes" id="kubernetes">

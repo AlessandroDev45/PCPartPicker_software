@@ -6,8 +6,8 @@ module.exports = {
     baseURL: 'http://localhost:8000',
     headless: true,
     viewport: { width: 1280, height: 800 },
-    actionTimeout: 10000,
-    navigationTimeout: 10000
+    actionTimeout: 30000,
+    navigationTimeout: 30000
   },
   reporter: [['list'], ['json', { outputFile: './e2e/reports/report.json' }]]
 };

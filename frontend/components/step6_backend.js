@@ -160,7 +160,7 @@ export function renderStep6Backend(container, dados = {}) {
       const dadosComBackend = { ...dados, backend: selected };
       try { import('../assets/tipoHelper.js').then(h => h.mergeAndSaveDados(dadosComBackend)); } catch(e){}
       // Próxima etapa: Infraestrutura (step6.js)
-      import('./step6.js').then(m => m.renderStep6(dadosComBackend || {}));
+      import('./step6.js?v=2').then(m => m.renderStep6(dadosComBackend || {}));
     });
   }
 }

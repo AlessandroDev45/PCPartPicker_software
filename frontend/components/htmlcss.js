@@ -36,8 +36,8 @@ export function renderHtmlCss(dados) {
                 <h5>Preview Responsivo</h5>
                 <div class="container border p-3 bg-white" style="max-width:600px;">
                     <div class="card shadow-sm p-4 mb-4">
-                        <h3 class="mb-3">Dashboard do Sistema</h3>
-                        <button class="btn btn-primary">Ação Principal</button>
+                      <h3 class="mb-3">Dashboard do Sistema</h3>
+                      <button id="preview-main-action-btn" class="btn btn-primary">Ação Principal</button>
                     </div>
                 </div>
             </div>
@@ -47,4 +47,6 @@ export function renderHtmlCss(dados) {
     document.getElementById('back').onclick = () => {
         import('./layout.js').then(m => m.renderLayout(dados));
     };
+    const previewBtn = document.getElementById('preview-main-action-btn');
+    if (previewBtn) previewBtn.addEventListener('click', () => alert('Ação principal (preview) clicada — comportamento placeholder.'));
 }

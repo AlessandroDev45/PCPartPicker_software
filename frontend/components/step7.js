@@ -76,7 +76,7 @@ export function renderStep7(dados) {
         </div>
     `;
     document.getElementById('back').onclick = () => {
-        import('./step6.js').then(m => m.renderStep6(dados));
+        import('./step6.js?v=2').then(m => m.renderStep6(dados));
     };
     document.getElementById('seguranca-form').onsubmit = (e) => {
         e.preventDefault();

@@ -48,11 +48,26 @@ export function renderHtmlFull(dados) {
                                 <li class="list-group-item">Backup realizado</li>
                                 <li class="list-group-item">Deploy atualizado</li>
                             </ul>
-                            <button class="btn btn-primary">Ação Principal</button>
+                            <button id="main-action-btn" class="btn btn-primary">Ação Principal</button>
                         </div>
                     </div>
                 </div>
             </main>
+            <!-- Modal para Ação Principal -->
+            <div class="modal fade" id="mainActionModal" tabindex="-1" aria-labelledby="mainActionModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mainActionModalLabel">Ação Principal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">Processando...</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <footer class="bg-light text-center py-3 border-top">
                 <small class="text-muted">&copy; ${new Date().getFullYear()} ${dados.nomeProjeto || 'Sistema Profissional'} | Arquitetura Premium</small>
             </footer>
@@ -62,4 +77,19 @@ export function renderHtmlFull(dados) {
     document.getElementById('back').onclick = () => {
         import('./htmlcss.js').then(m => m.renderHtmlCss(dados));
     };
+    // Ligar ação ao botão principal para demonstrar comportamento
+    const mainBtn = document.getElementById('main-action-btn');
+    if (mainBtn) {
+        mainBtn.addEventListener('click', () => {
+            const modalEl = document.getElementById('mainActionModal');
+            if (modalEl && typeof bootstrap !== 'undefined') {
+                const body = modalEl.querySelector('.modal-body');
+                if (body) body.textContent = 'Ação principal executada — este é um placeholder.';
+                const bsModal = new bootstrap.Modal(modalEl);
+                bsModal.show();
+            } else {
+                alert('Ação principal executada — placeholder.');
+            }
+        });
+    }
 }
