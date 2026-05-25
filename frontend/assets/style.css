@@ -1,0 +1,95 @@
+:root{
+	--bg: #f8fafc;
+	--card-bg: #ffffff;
+	--muted: #6b7280;
+	--accent: #0d6efd;
+	--max-width: 1100px;
+}
+
+body {
+	background: var(--bg);
+	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	color: #0f1720;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#app { min-height: 480px; }
+
+.card {
+	border: none;
+	border-radius: 0.75rem;
+	box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+	background: var(--card-bg);
+}
+
+.lead { color: #475569; font-size: 1.02rem; }
+
+.card h2, .card h3, .card h5 { color: #0b1220; }
+
+.card-body ul li { margin-bottom: 0.35rem; }
+
+/* Grid options (tipo de sistema) */
+.card-option {
+	cursor: pointer;
+	transition: transform .15s ease, box-shadow .15s ease, border-color .12s ease;
+	padding: 1rem;
+	height: 110px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: var(--card-bg);
+	border: 1px solid #e9eef6;
+	border-radius: 0.6rem;
+}
+.card-option:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 12px 30px rgba(13,110,253,0.08);
+	border-color: rgba(13,110,253,0.12);
+}
+.card-option span { font-size: 1.8rem; }
+.card-option strong { margin-top: .45rem; font-size: .95rem; }
+
+/* Selected state and info button */
+.card-option.selected { border-color: var(--accent); box-shadow: 0 10px 24px rgba(13,110,253,0.08); }
+.card-option .info-btn { position: absolute; right: .6rem; top: .45rem; background: transparent; border: none; font-size: 0.98rem; cursor: pointer; }
+.card-option .primary-btn { position: absolute; left: .6rem; top: .45rem; background: transparent; border: none; font-size: 0.98rem; cursor: pointer; }
+.card-option.primary { box-shadow: 0 14px 34px rgba(245,158,11,0.08); border-color: #f59e0b; }
+
+/* Backend selection cards */
+.backend-card { cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; border: 1px solid #e9eef6; }
+.backend-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(13,110,253,0.06); }
+.backend-card.selected { border-color: var(--accent); box-shadow: 0 12px 30px rgba(13,110,253,0.08); }
+.backend-card:focus { outline: 3px solid rgba(13,110,253,0.08); }
+
+/* Chips for selected types */
+#selected-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #eef2ff; padding:4px 8px; border-radius:999px; font-size:0.9rem; }
+.chip .btn-close { width:18px; height:18px; }
+
+/* Progress bar styling */
+.progress { height: 2.4rem; border-radius: .5rem; overflow: hidden; background: #e9eef6; }
+.progress .progress-bar { display: flex; align-items:center; justify-content:center; font-weight:600; font-size:0.9rem; border-radius:0; }
+.progress .progress-bar.bg-light { background: transparent; color: var(--muted); opacity: 0.85; }
+.progress .progress-bar.bg-success { background: linear-gradient(90deg, #198754 0%, var(--accent) 100%); color: #fff; }
+
+/* Make list groups and small panels look lighter */
+.bg-light.border.rounded { background: #fbfdff !important; border-color: #e6eef9 !important; }
+
+/* Minor responsive tweaks */
+@media (max-width: 576px) {
+	.card-option { height: 100px; padding: .8rem; }
+	.progress { height: 2rem; }
+}
+
+/* Progress labels (separate row under the visual bar) */
+.progress-wrapper { max-width: var(--max-width); margin: 0 auto; }
+.progress-labels { width: 100%; display: flex; gap: 0; align-items: center; }
+.progress-label { flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.9rem; padding: 4px 6px; color: var(--muted); box-sizing: border-box; }
+.progress-label.active { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 576px) {
+	.progress-label { font-size: 0.78rem; padding: 3px 4px; }
+}
+

@@ -1,0 +1,11 @@
+{
+  "name": "pcpartpicker-funil-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "scripts": {
+    "test:e2e": "npx playwright test --config=e2e/playwright.config.js --reporter=json:./e2e/reports/report.json"
+  }
+}
