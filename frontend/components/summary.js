@@ -147,6 +147,7 @@ export function renderSummary(dados) {
             <p class="mb-4">Resumo completo e validado da arquitetura ideal para seu projeto, incluindo recomendações, custos, limites gratuitos, gargalos e roadmap de crescimento.</p>
             <ol class="list-group list-group-numbered mb-4">
                 <li class="list-group-item"><strong>Tipo real do sistema:</strong> ${tipoToString(dados.tipo)}</li>
+                <li class="list-group-item"><strong>Resumo da aplicação:</strong> ${dados.resumo || '-'}</li>
                 <li class="list-group-item"><strong>Nível de complexidade:</strong> ${final.escala || '-'}</li>
                 <li class="list-group-item"><strong>Escalabilidade:</strong> ${final.escalabilidade || '-'} </li>
                 <li class="list-group-item"><strong>Fluxo do sistema:</strong> ${final.fluxo || '-'}</li>
