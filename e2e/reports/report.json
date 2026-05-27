@@ -1,262 +1,122 @@
 [
   {
     "tipo": "Aplicação Local",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Web App",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Mobile",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "SaaS",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Automação",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Bot 24h",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "API / Backend",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Sistema Industrial",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "IA",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Dashboard",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Desktop",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Jogo",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "IoT",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "PWA",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Edge",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Embedded",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Data Pipeline",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Realtime",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Admin",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   },
   {
     "tipo": "Sistema Híbrido",
-    "selectFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    },
-    "primaryFlow": {
-      "nextEnabled": true,
-      "backendNextEnabled": true,
-      "reachedInfra": true
-    }
+    "selectFlow": {},
+    "primaryFlow": {},
+    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
   }
 ]

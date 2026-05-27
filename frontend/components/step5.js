@@ -47,8 +47,8 @@ export function renderStep5(dados) {
                         <option value="sim">Sim</option>
                     </select>
                 </div>
+                <button type="button" class="btn btn-secondary me-2" id="back">Voltar</button>
                 <button type="submit" class="btn btn-primary">Avançar</button>
-                <button type="button" class="btn btn-secondary ms-2" id="back">Voltar</button>
             </form>
         </div>
     `;

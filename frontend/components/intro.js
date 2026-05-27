@@ -210,31 +210,31 @@ function renderTypeExplanation(tipo, preservedSelected = [], container = null) {
     const root = container || document.getElementById('etapa') || document.getElementById('app');
     if (!root) return;
     const explicacoes = {
-        'Aplicação Local': 'Aplicações locais rodam diretamente no computador do usuário. Vantagens: velocidade, offline, controle total do hardware. Desvantagens: atualização e multiplataforma mais complexos.',
-        'Web App': 'Aplicações acessadas via navegador. Vantagens: acesso global, deploy simples, multiplataforma. Desvantagens: depende de internet, acesso limitado ao hardware.',
-        'Mobile': 'Aplicativos para smartphones/tablets. Vantagens: mobilidade, notificações. Desvantagens: publicação em lojas, fragmentação.',
-        'SaaS': 'Software online multiusuário. Vantagens: escalabilidade, assinatura, multiempresa. Desvantagens: custos de infraestrutura, segurança.',
-        'Automação': 'Sistemas autônomos para ETL, scraping, jobs. Vantagens: automação, redução de erros. Desvantagens: monitoramento, manutenção.',
-        'Bot 24h': 'Processos contínuos (ex: Telegram, Discord). Vantagens: automação, disponibilidade. Desvantagens: custos contínuos, monitoramento.',
-        'API / Backend': 'Camada central do sistema. Vantagens: centralização de regras, integração. Desvantagens: precisa de frontend/consumidor.',
-        'Sistema Industrial': 'Integração com sensores, CLPs, máquinas. Vantagens: automação industrial. Desvantagens: alta complexidade, hardware.',
-        'IA': 'Sistemas com inteligência artificial. Vantagens: automação inteligente, análise avançada. Desvantagens: custos de processamento, dados.',
-        'Dashboard': 'Visualização de dados e métricas. Vantagens: tomada de decisão, monitoramento. Desvantagens: depende de fontes de dados.',
-        'Desktop': 'Aplicações para PC/Mac. Vantagens: performance, acesso a hardware. Desvantagens: distribuição, atualização.',
-        'Jogo': 'Jogos digitais. Vantagens: entretenimento, engajamento. Desvantagens: alta complexidade, performance.',
-        'IoT': 'Internet das Coisas. Vantagens: automação, monitoramento remoto. Desvantagens: segurança, conectividade.',
-        'PWA': 'Progressive Web App: aplica-se quando se quer experiência web com comportamento de app nativo e offline.',
-        'Edge': 'Edge computing: processamento próximo ao dispositivo, reduz latência e tráfego central.',
-        'Embedded': 'Sistemas embarcados: firmware e software para hardware dedicado; cuidado com recursos limitados.',
-        'Data Pipeline': 'Fluxos de dados e ETL: pipelines para ingestão, transformação e entrega de dados.',
-        'Realtime': 'Sistemas em tempo real: troca contínua de mensagens, baixa latência, requisitos de consistência.',
-        'Admin': 'Admin / Backoffice: interfaces e ferramentas para administração e operações internas.',
-        'Sistema Híbrido': 'Combina dois ou mais tipos acima. Vantagens: flexibilidade. Desvantagens: maior complexidade.',
+        'Aplicação Local': '<p>Aplicações instaladas e executadas localmente no computador do usuário. Vantagens: desempenho e funcionamento offline. Desvantagens: distribuição e atualizações.</p><p><strong>Exemplos:</strong> Ferramenta de contabilidade desktop, utilitário de backup local.</p>',
+        'Web App': '<p>Aplicações acessadas via navegador, fáceis de distribuir e multiplataforma, mas dependem de conexão.</p><p><strong>Exemplos:</strong> Loja virtual, plataforma de suporte ao cliente.</p>',
+        'Mobile': '<p>Aplicativos para smartphones/tablets (nativos ou híbridos). Ideais para experiências móveis e notificações push.</p><p><strong>Exemplos:</strong> App bancário, app de delivery.</p>',
+        'SaaS': '<p>Software entregue como serviço, multiusuário e hospedado na nuvem. Focado em assinaturas e escalabilidade.</p><p><strong>Exemplos:</strong> CRM online, ferramenta de gestão financeira.</p>',
+        'Automação': '<p>Jobs e scripts automatizados para tarefas repetitivas (ETL, integração, scraping).</p><p><strong>Exemplos:</strong> Pipeline de ingestão de dados, geração automática de relatórios.</p>',
+        'Bot 24h': '<p>Serviços contínuos que respondem automaticamente (chatbots, agentes de notificação). Precisam de monitoramento e escalabilidade.</p><p><strong>Exemplos:</strong> Bot de atendimento no Telegram, agente de alertas no Slack.</p>',
+        'API / Backend': '<p>Serviços que expõem lógica e dados via APIs (REST/GraphQL). Normalmente consumidos por frontends ou integrações.</p><p><strong>Exemplos:</strong> Serviço de autenticação, catálogo de produtos.</p>',
+        'Sistema Industrial': '<p>Sistemas integrados a equipamentos industriais (PLCs, SCADA). Requerem alta confiabilidade e compatibilidade com hardware específico.</p><p><strong>Exemplos:</strong> Supervisório de fábrica, controle de linha de produção.</p>',
+        'IA': '<p>Soluções com modelos de machine learning para previsões, classificação ou automação inteligente.</p><p><strong>Exemplos:</strong> Recomendação de produtos, classificação automática de imagens.</p>',
+        'Dashboard': '<p>Painéis de visualização e monitoramento de métricas (BI).</p><p><strong>Exemplos:</strong> Dashboard de vendas, painel de saúde operacional.</p>',
+        'Desktop': '<p>Aplicações ricas para PC/Mac (Electron, .NET, nativas). Foco em performance e integração com o sistema operacional.</p><p><strong>Exemplos:</strong> Editor de texto avançado, software de edição de imagens.</p>',
+        'Jogo': '<p>Aplicações de entretenimento com requisitos específicos de performance e gráficos.</p><p><strong>Exemplos:</strong> Jogo casual para web, jogo multiplayer para desktop.</p>',
+        'IoT': '<p>Dispositivos e sensores conectados com comunicação para a nuvem ou gateways. Atenção à segurança e conectividade.</p><p><strong>Exemplos:</strong> Sensor de temperatura conectado, gateway doméstico inteligente.</p>',
+        'PWA': '<p>Progressive Web Apps: sites que fornecem experiência similar a app (instalável, offline, push).</p><p><strong>Exemplos:</strong> Loja com modo offline, leitor de notícias instalável via navegador.</p>',
+        'Edge': '<p>Processamento na borda (edge) para reduzir latência e tráfego ao centro de dados.</p><p><strong>Exemplos:</strong> Funções em CDN, processamento local em gateways industriais.</p>',
+        'Embedded': '<p>Sistemas embarcados com firmware para hardware dedicado; exigem otimização de recursos.</p><p><strong>Exemplos:</strong> Firmware para microcontrolador, placa de controle embarcada.</p>',
+        'Data Pipeline': '<p>Fluxos de ingestão, transformação e entrega de dados (ETL/ELT).</p><p><strong>Exemplos:</strong> Pipeline com Kafka + Spark, ETL agendado com Airflow.</p>',
+        'Realtime': '<p>Sistemas com comunicação em tempo real e baixa latência (WebSocket, WebRTC).</p><p><strong>Exemplos:</strong> Chat em tempo real, dashboard de cotações ao vivo.</p>',
+        'Admin': '<p>Interfaces de administração e backoffice para gestão interna e operações.</p><p><strong>Exemplos:</strong> Painel de gestão de usuários, console de configuração.</p>',
+        'Sistema Híbrido': '<p>Arquitetura que combina múltiplos tipos (por exemplo: mobile + backend + IoT). Oferece flexibilidade, mas aumenta a complexidade.</p><p><strong>Exemplos:</strong> App mobile que sincroniza com dispositivos IoT e painel web administrativo.</p>',
     };
     root.innerHTML = `
         <div class="card shadow-sm p-4 mb-4">
             <h3 class="mb-3">${tipo}</h3>
-            <p>${explicacoes[tipo] || 'Tipo não encontrado.'}</p>
+            <div class="mb-2">${explicacoes[tipo] || '<p>Tipo não encontrado.</p>'}</div>
             <div class="d-flex gap-2 mt-3">
                 <button class="btn btn-secondary" id="back">Voltar</button>
                 <button class="btn btn-outline-primary" id="add-and-back">Adicionar e Voltar</button>

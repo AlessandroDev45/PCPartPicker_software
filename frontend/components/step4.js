@@ -55,8 +55,8 @@ export function renderStep4(dados) {
                         <label class="form-check-label" for="industriais">Arquivos industriais</label>
                     </div>
                 </div>
+                <button type="button" class="btn btn-secondary me-2" id="back">Voltar</button>
                 <button type="submit" class="btn btn-primary">Avançar</button>
-                <button type="button" class="btn btn-secondary ms-2" id="back">Voltar</button>
             </form>
         </div>
     `;

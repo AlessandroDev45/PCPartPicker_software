@@ -32,8 +32,8 @@ export function renderStep3(dados) {
                         <option value="edge">Edge computing</option>
                     </select>
                 </div>
+                <button type="button" class="btn btn-secondary me-2" id="back">Voltar</button>
                 <button type="submit" class="btn btn-primary">Avançar</button>
-                <button type="button" class="btn btn-secondary ms-2" id="back">Voltar</button>
             </form>
         </div>
     `;

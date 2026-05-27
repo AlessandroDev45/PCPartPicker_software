@@ -65,8 +65,8 @@ export function renderStep6(dados) {
                         <div class="form-text text-muted">Orquestração de containers para produção em larga escala — deploys, autoscaling e resiliência, porém com complexidade operacional.</div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-secondary me-2" id="back">Voltar</button>
                 <button type="submit" class="btn btn-primary">Avançar</button>
-                <button type="button" class="btn btn-secondary ms-2" id="back">Voltar</button>
             </form>
         </div>
     `;
