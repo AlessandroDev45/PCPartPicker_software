@@ -6,6 +6,6 @@
     "@playwright/test": "^1.40.0"
   },
   "scripts": {
-    "test:e2e": "npx playwright test --config=e2e/playwright.config.js --reporter=json:./e2e/reports/report.json"
+    "test:e2e": "npx playwright test --config=e2e/playwright.config.js"
   }
 }
