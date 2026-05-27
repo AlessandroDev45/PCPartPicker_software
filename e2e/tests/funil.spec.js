@@ -29,6 +29,14 @@ test.describe('Funil técnico - sweep por tipo', () => {
             await page.selectOption('#escala-form select[name="tipo_uso"]','comercial');
             await page.selectOption('#escala-form select[name="crescimento"]','alto');
             await page.click('#escala-form button[type="submit"]');
+
+            // Inference review modal may appear — handle it
+            const modal = await page.$('.modal-dialog');
+            if (modal) {
+              await page.click('#inference-accept-all');
+              await page.click('#inference-confirm');
+            }
+
             await page.waitForSelector('#conect-form');
             await page.selectOption('#conect-form select[name="internet"]','online');
             await page.selectOption('#conect-form select[name="realtime"]','nao');
@@ -41,10 +49,13 @@ test.describe('Funil técnico - sweep por tipo', () => {
             if (tipos.length) await tipos[0].click();
             await page.click('#dados-form button[type="submit"]');
             await page.waitForSelector('#proc-form');
+
+            // Step5 new fields
             await page.selectOption('#proc-form select[name="ia"]','nao');
             await page.selectOption('#proc-form select[name="cpu_gpu"]','nao');
-            await page.selectOption('#proc-form select[name="automacoes"]','nao');
+            await page.selectOption('#proc-form select[name="tarefas_agendadas"]','nao');
             await page.selectOption('#proc-form select[name="paralelo"]','nao');
+            await page.selectOption('#proc-form select[name="fila_mensagens"]','nao');
             await page.selectOption('#proc-form select[name="realtime"]','nao');
             await page.click('#proc-form button[type="submit"]');
             await page.waitForSelector('#backend-grid');
@@ -76,27 +87,38 @@ test.describe('Funil técnico - sweep por tipo', () => {
           entry.primaryFlow.nextEnabled = nextEnabled;
           if (nextEnabled) {
             await page.click('#next-step');
-            // repeat the happy path as above
             await page.waitForSelector('#escala-form');
             await page.fill('#escala-form input[name="usuarios"]','100');
             await page.fill('#escala-form input[name="simultaneos"]','10');
             await page.selectOption('#escala-form select[name="tipo_uso"]','comercial');
             await page.selectOption('#escala-form select[name="crescimento"]','alto');
             await page.click('#escala-form button[type="submit"]');
+
+            // Inference review modal may appear
+            const modal2 = await page.$('.modal-dialog');
+            if (modal2) {
+              await page.click('#inference-accept-all');
+              await page.click('#inference-confirm');
+            }
+
             await page.waitForSelector('#conect-form');
             await page.selectOption('#conect-form select[name="internet"]','online');
             await page.selectOption('#conect-form select[name="realtime"]','nao');
             await page.selectOption('#conect-form select[name="edge"]','nao');
             await page.click('#conect-form button[type="submit"]');
             await page.waitForSelector('#dados-form');
+            await page.selectOption('#dados-form select[name="usa_banco"]','sim');
             const tipos2 = await page.$$('[name="tipos_dados"]');
             if (tipos2.length) await tipos2[0].click();
             await page.click('#dados-form button[type="submit"]');
             await page.waitForSelector('#proc-form');
+
+            // Step5 new fields
             await page.selectOption('#proc-form select[name="ia"]','nao');
             await page.selectOption('#proc-form select[name="cpu_gpu"]','nao');
-            await page.selectOption('#proc-form select[name="automacoes"]','nao');
+            await page.selectOption('#proc-form select[name="tarefas_agendadas"]','nao');
             await page.selectOption('#proc-form select[name="paralelo"]','nao');
+            await page.selectOption('#proc-form select[name="fila_mensagens"]','nao');
             await page.selectOption('#proc-form select[name="realtime"]','nao');
             await page.click('#proc-form button[type="submit"]');
             await page.waitForSelector('#backend-grid');

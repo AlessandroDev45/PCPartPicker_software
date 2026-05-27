@@ -1,122 +1,131 @@
 [
   {
     "tipo": "Aplicação Local",
-    "selectFlow": {},
-    "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "selectFlow": {
+      "nextEnabled": true,
+      "error": "TimeoutError: page.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#proc-form select[name=\"automacoes\"]')\u001b[22m\n"
+    },
+    "primaryFlow": {
+      "nextEnabled": true,
+      "error": "TimeoutError: page.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#proc-form select[name=\"automacoes\"]')\u001b[22m\n"
+    }
   },
   {
     "tipo": "Web App",
-    "selectFlow": {},
-    "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "selectFlow": {
+      "nextEnabled": true,
+      "error": "TimeoutError: page.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#proc-form select[name=\"automacoes\"]')\u001b[22m\n"
+    },
+    "primaryFlow": {
+      "error": "Error: page.waitForSelector: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#tipo-grid') to be visible\u001b[22m\n"
+    }
   },
   {
     "tipo": "Mobile",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "SaaS",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Automação",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Bot 24h",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "API / Backend",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Sistema Industrial",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "IA",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Dashboard",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Desktop",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Jogo",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "IoT",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "PWA",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Edge",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Embedded",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Data Pipeline",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Realtime",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Admin",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   },
   {
     "tipo": "Sistema Híbrido",
     "selectFlow": {},
     "primaryFlow": {},
-    "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:8000/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n"
+    "error": "Error: page.goto: Target page, context or browser has been closed"
   }
 ]

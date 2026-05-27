@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "C:\\Git_Repo\\Work\\PCPartPicker_software\\e2e\\playwright.config.js",
-    "rootDir": "C:/Git_Repo/Work/PCPartPicker_software/e2e/tests",
+    "configFile": "c:\\Git_Repo\\Work\\PCPartPicker_software\\e2e\\playwright.config.js",
+    "rootDir": "c:/Git_Repo/Work/PCPartPicker_software/e2e/tests",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -16,7 +16,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "C:/Git_Repo/Work/PCPartPicker_software/test-results",
+        "outputDir": "c:/Git_Repo/Work/PCPartPicker_software/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -24,7 +24,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "C:/Git_Repo/Work/PCPartPicker_software/e2e/tests",
+        "testDir": "c:/Git_Repo/Work/PCPartPicker_software/e2e/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -87,7 +87,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 23507,
+                      "duration": 40760,
                       "errors": [],
                       "stdout": [
                         {
@@ -96,7 +96,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-05-27T16:32:14.055Z",
+                      "startTime": "2026-05-27T17:05:41.607Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -116,8 +116,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-27T16:32:13.627Z",
-    "duration": 24151.276,
+    "startTime": "2026-05-27T17:05:41.227Z",
+    "duration": 41342.702000000005,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

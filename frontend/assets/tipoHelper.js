@@ -2,6 +2,7 @@
  tipoHelper.js - helpers para normalizar e persistir o objeto `tipo`
  Credit: Alessandro Souza <aaswilel@gmail.com>
 */
+
 export function normalizeTipo(input) {
     if (!input) return { values: [], primary: null };
     if (Array.isArray(input)) return { values: input.slice(), primary: null };
@@ -75,133 +76,277 @@ export function mergeAndSaveDados(partial, key = 'funil:dados') {
     }
 }
 
-export function parseResumoAplicacao(text) {
+/**
+ * Mark a set of keys as sourced from NLP inference.
+ * Preserves any existing manual origins.
+ */
+export function markNlpOrigin(keys, key = 'funil:dados') {
+    try {
+        const cur = loadFunilDados(key) || {};
+        const meta = cur._meta || {};
+        for (const k of keys) {
+            if (!meta[k] || meta[k] === 'default') {
+                meta[k] = 'nlp';
+            }
+        }
+        cur._meta = meta;
+        saveFunilDados(cur, key);
+    } catch (e) {}
+}
+
+/**
+ * Mark a set of keys as explicitly chosen by the user.
+ */
+export function markManualOrigin(keys, key = 'funil:dados') {
+    try {
+        const cur = loadFunilDados(key) || {};
+        const meta = cur._meta || {};
+        for (const k of keys) {
+            meta[k] = 'manual';
+        }
+        cur._meta = meta;
+        saveFunilDados(cur, key);
+    } catch (e) {}
+}
+
+/**
+ * Get the origin for a specific key.
+ * Returns 'manual', 'nlp', 'default', or null.
+ */
+export function getOrigin(key, dados) {
+    if (!dados) return null;
+    if (dados._meta && dados._meta[key]) return dados._meta[key];
+    return null;
+}
+
+/* ────────────────────────────────────────────
+   NLP — Lightweight entity extractor
+   Uses word-boundary regex to avoid false positives
+   ──────────────────────────────────────────── */
+function wordMatch(text, word) {
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`\\b${escaped}\\b`, 'i').test(text);
+}
+
+function anyWordMatch(text, words) {
+    return words.some(w => wordMatch(text, w));
+}
+
+export function nlpExtract(text) {
     if (!text || !String(text).trim()) return {};
     const t = String(text).toLowerCase();
+    const result = {};
+
+    // Numbers — same as before
+    const usersMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:usuário|usuários|usuarios|users?|clientes?|consumer|end.?user)/i);
+    if (usersMatch) result.usuarios = usersMatch[1].replace(/[.,\s]/g, '');
+    const concMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:simultâne|simultaneos|simultâneos|concurrentes?|concurrent|simultaneous|online.?at.?once|parallel)/i);
+    if (concMatch) result.simultaneos = concMatch[1].replace(/[.,\s]/g, '');
+    const tpsMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:transaçõe|transacoes|transactions|requests?|req\b)/i);
+    if (tpsMatch) result.transacoes = tpsMatch[1].replace(/[.,\s]/g, '');
+    const budgetMatch = text.match(/(?:orçamento|budget|custo|custo.?mensal|investimento)\s*(?:de\s*)?(?:R\$|US\$|\$)?\s*(\d{1,3}(?:[.,\s]?\d{3})*)/i);
+    if (budgetMatch) result.orcamento = budgetMatch[1].replace(/[.,\s]/g, '');
+    if (/(?:sla|uptime|disponibilidade)\s*(?:de\s*)?(?:99\.?\d*)/i.test(text)) {
+        const slaMatch = text.match(/(?:sla|uptime|disponibilidade)\s*(?:de\s*)?(99\.?\d*)/i);
+        if (slaMatch) result.sla = slaMatch[1];
+    }
+    const rtMatch = text.match(/(\d{1,5})\s*(?:ms|milissegundo|millisecond|segundo|second|minuto|minute)/i);
+    if (rtMatch) result.tempo_resposta = rtMatch[0];
+
+    // Databases — word boundary
+    const dbMap = {
+        'postgresql': 'PostgreSQL', 'postgres': 'PostgreSQL',
+        'mysql': 'MySQL', 'mariadb': 'MariaDB',
+        'mongodb': 'MongoDB', 'mongo': 'MongoDB',
+        'redis': 'Redis', 'sqlite': 'SQLite',
+        'firebase': 'Firebase / Firestore', 'firestore': 'Firebase / Firestore',
+        'dynamodb': 'DynamoDB', 'cassandra': 'Cassandra',
+        'elasticsearch': 'Elasticsearch',
+        'prisma': 'Prisma ORM'
+    };
+    for (const [kw, label] of Object.entries(dbMap)) {
+        if (wordMatch(t, kw)) { result.banco = label; break; }
+    }
+
+    // Auth — word boundary
+    const authWords = ['oauth2', 'oauth', 'jwt', 'auth0', 'clerk', 'keycloak', 'login', 'mfa', '2fa', 'rbac'];
+    if (anyWordMatch(t, authWords)) {
+        result.login = 'sim';
+        if (wordMatch(t, 'supabase')) result.auth = 'Supabase Auth (JWT)';
+        else if (wordMatch(t, 'auth0')) result.auth = 'Auth0';
+        else if (wordMatch(t, 'clerk')) result.auth = 'Clerk';
+        else result.auth = 'JWT / OAuth2';
+    }
+
+    // Queues / workers — word boundary
+    const queueWords = ['rabbitmq', 'kafka', 'nats', 'celery', 'bullmq', 'sqs', 'worker', 'queue', 'fila'];
+    if (anyWordMatch(t, queueWords)) {
+        result.automacoes = 'sim';
+        if (wordMatch(t, 'rabbitmq')) result.filas = 'RabbitMQ';
+        else if (wordMatch(t, 'kafka')) result.filas = 'Kafka';
+        else result.filas = 'Redis / Fila';
+    }
+
+    // Monitoring — word boundary
+    const monWords = ['sentry', 'prometheus', 'grafana', 'datadog', 'new relic', 'opentelemetry', 'elk'];
+    if (anyWordMatch(t, monWords)) {
+        result.monitoramento = 'sim';
+        result.logs = 'sim';
+    }
+
+    // CI/CD — word boundary
+    const cicdWords = ['github actions', 'gitlab ci', 'jenkins', 'circleci'];
+    if (anyWordMatch(t, cicdWords)) result.cicd = 'GitHub Actions';
+
+    // Cloud — word boundary
+    const cloudWords = ['vercel', 'netlify', 'cloudflare', 'railway', 'render', 'heroku', 'fly.io',
+        'aws', 'gcp', 'azure', 'digitalocean'];
+    for (const w of cloudWords) {
+        if (wordMatch(t, w)) { result.cloud = w; break; }
+    }
+
+    // Docker / K8s — word boundary
+    if (wordMatch(t, 'docker')) result.docker = 'docker';
+    if (wordMatch(t, 'kubernetes') || wordMatch(t, 'k8s')) result.kubernetes = 'kubernetes';
+
+    // Real-time — word boundary
+    if (anyWordMatch(t, ['websocket', 'socket.io', 'socketio'])) result.realtime = 'sim';
+
+    // Backup — word boundary
+    if (wordMatch(t, 'backup') || wordMatch(t, 'snapshot')) result.backup = 'sim';
+
+    // Encryption — word boundary
+    if (anyWordMatch(t, ['criptografia', 'encrypt', 'tls', 'ssl'])) result.criptografia = 'sim';
+    if (anyWordMatch(t, ['lgpd', 'gdpr'])) result.lgpd = 'sim';
+
+    // IA / ML — STRICT: only specific terms, NOT "ia"
+    const iaStrict = ['machine learning', 'ml', 'deep learning', 'gpt', 'openai', 'llm',
+        'neural network', 'tensorflow', 'pytorch', 'embedding'];
+    if (anyWordMatch(t, iaStrict)) {
+        const localHints = ['on-prem', 'onprem', 'local model', 'edge ai', 'edge ia'];
+        result.ia = anyWordMatch(t, localHints) ? 'sim_local' : 'sim_cloud';
+    }
+
+    // GPU — only explicit terms
+    if (wordMatch(t, 'gpu') || wordMatch(t, 'cuda')) result.cpu_gpu = 'gpu';
+
+    // Storage — word boundary
+    if (anyWordMatch(t, ['s3', 'minio', 'cdn', 'object storage', 'supabase storage'])) result.storage = 'sim';
+
+    // Container
+    if (wordMatch(t, 'docker')) result.docker = 'Docker + Compose';
+    if (wordMatch(t, 'kubernetes') || wordMatch(t, 'k8s')) result.kubernetes = 'Kubernetes';
+
+    return result;
+}
+
+/**
+ * parseResumoAplicacao — strict mode with word-boundary regex
+ */
+export function parseResumoAplicacao(text) {
+    if (!text || !String(text).trim()) return {};
     const partial = {};
 
-    // detect tipos
+    // Tipo detection — strict word boundary
     const tipoMap = [
-        ['mobile', 'Mobile'],
-        ['web app', 'Web App'],
-        ['web', 'Web App'],
-        ['desktop', 'Desktop'],
-        ['pwa', 'PWA'],
-        ['iot', 'IoT'],
-        ['bot', 'Bot 24h'],
-        ['api', 'API / Backend'],
-        ['backend', 'API / Backend'],
-        ['saas', 'SaaS'],
-        ['automação', 'Automação'],
-        ['automation', 'Automação'],
-        ['data pipeline', 'Data Pipeline'],
-        ['pipeline', 'Data Pipeline'],
-        ['realtime', 'Realtime'],
-        ['tempo real', 'Realtime'],
-        ['dashboard', 'Dashboard'],
-        ['admin', 'Admin'],
-        ['ia', 'IA'],
-        ['inteligência artificial', 'IA'],
-        ['edge', 'Edge'],
-        ['embedded', 'Embedded'],
-        ['jogo', 'Jogo'],
-        ['game', 'Jogo'],
-        ['industrial', 'Sistema Industrial'],
-        ['híbrido', 'Sistema Híbrido'],
-        ['hibrido', 'Sistema Híbrido']
+        [/\bmobile\b/i, 'Mobile'],
+        [/web\s*app/i, 'Web App'],
+        [/\bsite\b/i, 'Web App'],
+        [/website/i, 'Web App'],
+        [/\bdesktop\b/i, 'Desktop'],
+        [/\bpwa\b/i, 'PWA'],
+        [/progressive\s*web\b/i, 'PWA'],
+        [/\biot\b/i, 'IoT'],
+        [/internet\s*of\s*things/i, 'IoT'],
+        [/\bbot\b/i, 'Bot 24h'],
+        [/chatbot/i, 'Bot 24h'],
+        [/\bapi\b/i, 'API / Backend'],
+        [/\bbackend\b/i, 'API / Backend'],
+        [/rest\s*api/i, 'API / Backend'],
+        [/graphql/i, 'API / Backend'],
+        [/microservi/i, 'API / Backend'],
+        [/\bsaas\b/i, 'SaaS'],
+        [/automação/i, 'Automação'],
+        [/automation/i, 'Automação'],
+        [/etl/i, 'Data Pipeline'],
+        [/data\s*pipeline/i, 'Data Pipeline'],
+        [/\brealtime\b/i, 'Realtime'],
+        [/tempo\s*real/i, 'Realtime'],
+        [/streaming/i, 'Realtime'],
+        [/\bdashboard\b/i, 'Dashboard'],
+        [/painel/i, 'Dashboard'],
+        [/\badmin\b/i, 'Admin'],
+        [/backoffice/i, 'Admin'],
+        [/machine\s*learning/i, 'IA'],
+        [/deep\s*learning/i, 'IA'],
+        [/\bgpt\b/i, 'IA'],
+        [/openai/i, 'IA'],
+        [/\bllm\b/i, 'IA'],
+        [/\bedge\s*computing/i, 'Edge'],
+        [/\bembedded\b/i, 'Embedded'],
+        [/\bjogo\b/i, 'Jogo'],
+        [/\bgame\b/i, 'Jogo'],
+        [/\bindustrial\b/i, 'Sistema Industrial'],
+        [/scada/i, 'Sistema Industrial'],
+        [/\bplc\b/i, 'Sistema Industrial'],
     ];
+
     const tiposFound = [];
-    for (const [kw, label] of tipoMap) {
-        if (t.indexOf(kw) !== -1 && tiposFound.indexOf(label) === -1) tiposFound.push(label);
+    for (const [regex, label] of tipoMap) {
+        if (regex.test(text) && tiposFound.indexOf(label) === -1) tiposFound.push(label);
     }
     if (tiposFound.length) partial.tipo = { values: tiposFound, primary: tiposFound[0] };
 
-    // detect backend frameworks
-    const backendMap = {
-        'nestjs': 'NestJS',
-        'fastapi': 'FastAPI',
-        'express': 'Express',
-        'django': 'Django',
-        'flask': 'Flask',
-        'bun': 'Bun',
-        'spring': 'Spring',
-        'go': 'Go',
-        'golang': 'Go'
-    };
-    for (const k in backendMap) if (t.indexOf(k) !== -1) { partial.backend = backendMap[k]; break; }
+    // Backend frameworks
+    const backendMap = [
+        [/\bnestjs\b/i, 'NestJS'], [/\bfastapi\b/i, 'FastAPI'],
+        [/\bexpress\b/i, 'Express'], [/\bdjango\b/i, 'Django'],
+        [/\bflask\b/i, 'Flask'], [/\bbun\b/i, 'Bun'],
+        [/\bgolang\b/i, 'Go'], [/\bgo\b/i, 'Go'],
+        [/spring\s*boot/i, 'Spring Boot'], [/\blaravel\b/i, 'Laravel'],
+        [/\brails\b/i, 'Ruby on Rails'],
+    ];
+    for (const [regex, label] of backendMap) {
+        if (regex.test(text)) { partial.backend = label; break; }
+    }
 
-    // frontend hints
-    const frontendMap = {
-        'next.js': 'Next.js / React',
-        'nextjs': 'Next.js / React',
-        'react': 'React',
-        'vue': 'Vue',
-        'angular': 'Angular',
-        'svelte': 'Svelte',
-        'flutter': 'Flutter',
-        'react native': 'React Native',
-        'electron': 'Electron',
-        'tauri': 'Tauri'
-    };
-    for (const k in frontendMap) if (t.indexOf(k) !== -1) { partial.frontend = frontendMap[k]; break; }
+    // Frontend
+    const frontendMap = [
+        [/next\.js/i, 'Next.js / React'], [/\breact\b/i, 'React'],
+        [/\bvue\b/i, 'Vue'], [/\bangular\b/i, 'Angular'],
+        [/\bsvelte\b/i, 'Svelte'], [/\bflutter\b/i, 'Flutter'],
+    ];
+    for (const [regex, label] of frontendMap) {
+        if (regex.test(text)) { partial.frontend = label; break; }
+    }
 
-    // services / providers
+    // Services — word boundary
     const services = [];
-    ['vercel','supabase','neon','railway','render','cloudflare','aws','gcp','azure','sentry','prometheus','grafana'].forEach(s => { if (t.indexOf(s)!==-1) services.push(s); });
+    const serviceWords = ['vercel', 'netlify', 'supabase', 'neon', 'railway', 'render',
+        'cloudflare', 'aws', 'gcp', 'azure', 'digitalocean', 'heroku',
+        'stripe', 'twilio', 'sendgrid', 'algolia', 'auth0', 'clerk'];
+    for (const w of serviceWords) {
+        if (new RegExp(`\\b${w}\\b`, 'i').test(text) && services.indexOf(w) === -1) services.push(w);
+    }
     if (services.length) partial.servicos = services;
 
-    // auth
-    if (t.indexOf('oauth') !== -1 || t.indexOf('jwt') !== -1 || t.indexOf('autent') !== -1 || t.indexOf('login') !== -1) {
-        partial.login = 'sim';
-        partial.auth = t.indexOf('supabase') !== -1 ? 'Supabase Auth (JWT)' : 'JWT / OAuth2';
-    }
+    // Database mention
+    const dbPatterns = [/\bpostgres\b/i, /\bmysql\b/i, /\bmongodb\b/i, /\bredis\b/i,
+        /\bsqlite\b/i, /\bfirebase\b/i, /\bdynamodb\b/i, /\bbanco\b/i, /\bdatabase\b/i];
+    if (dbPatterns.some(r => r.test(text))) partial.usa_banco = 'sim';
 
-    // banco
-    if (t.indexOf('postgres') !== -1 || t.indexOf('postgresql') !== -1 || t.indexOf('mysql') !== -1 || t.indexOf('mongo') !== -1 || t.indexOf('mongodb') !== -1 || t.indexOf('banco') !== -1 || t.indexOf('database') !== -1) {
-        partial.usa_banco = 'sim';
-        if (t.indexOf('postgres') !== -1 || t.indexOf('supabase') !== -1 || t.indexOf('neon') !== -1) partial.banco = 'Postgres (recomendado)';
-        else if (t.indexOf('mysql') !== -1) partial.banco = 'MySQL';
-        else if (t.indexOf('mongo') !== -1) partial.banco = 'MongoDB';
-        else partial.banco = 'Banco de dados necessário';
-    }
+    // Real-time
+    if (/\bwebsocket\b/i.test(text) || /socket\.io/i.test(text) ||
+        /tempo\s*real/i.test(text) || /\brealtime\b/i.test(text)) partial.realtime = 'sim';
 
-    // realtime
-    if (t.indexOf('websocket') !== -1 || t.indexOf('tempo real') !== -1 || t.indexOf('realtime') !== -1) partial.realtime = 'sim';
+    // Workers
+    if (/\bworker\b/i.test(text) || /\bjob\b/i.test(text) || /\bfila\b/i.test(text) ||
+        /\bcron\b/i.test(text) || /\betl\b/i.test(text)) partial.automacoes = 'sim';
 
-    // automações / filas / workers
-    if (t.indexOf('cron') !== -1 || t.indexOf('job') !== -1 || t.indexOf('fila') !== -1 || t.indexOf('queue') !== -1 || t.indexOf('worker') !== -1 || t.indexOf('etl') !== -1) {
-        partial.automacoes = 'sim';
-        partial.workers = 'Workers/Jobs necessários';
-        partial.filas = 'Redis/RabbitMQ (provável)';
-    }
-
-    // ia / gpu
-    if (t.indexOf('machine learning') !== -1 || t.indexOf('ml') !== -1 || t.indexOf('ia') !== -1 || t.indexOf('inteligência artificial') !== -1 || t.indexOf('gpu') !== -1) {
-        partial.ia = t.indexOf('local') !== -1 || t.indexOf('on-prem') !== -1 ? 'sim_local' : 'sim_cloud';
-        if (t.indexOf('gpu') !== -1) partial.cpu_gpu = 'gpu';
-    }
-
-    // storage
-    if (t.indexOf('s3') !== -1 || t.indexOf('storage') !== -1 || t.indexOf('minio') !== -1) partial.storage = 'S3 / MinIO / Supabase Storage';
-
-    // docker / k8s
-    if (t.indexOf('docker') !== -1) partial.docker = 'docker';
-    if (t.indexOf('kubernetes') !== -1 || t.indexOf('k8s') !== -1) partial.kubernetes = 'kubernetes';
-
-    // ci/cd
-    if (t.indexOf('github actions') !== -1 || t.indexOf('cicd') !== -1 || t.indexOf('ci/cd') !== -1 || t.indexOf('pipeline') !== -1) partial.cicd = 'GitHub Actions';
-
-    // backups / monitoring
-    if (t.indexOf('backup') !== -1) partial.backup = 'sim';
-    if (t.indexOf('sentry') !== -1 || t.indexOf('prometheus') !== -1 || t.indexOf('grafana') !== -1 || t.indexOf('monitor') !== -1 || t.indexOf('monitoramento') !== -1) {
-        partial.logs = 'Sentry/ELK/CloudLogs';
-        partial.monitoramento = 'Prometheus + Grafana / Sentry';
-    }
-
-    // usuarios / simultaneos (simples regex)
-    const usersMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:usuário|usuários|usuarios|users|clientes)/i);
+    // Numbers
+    const usersMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:usuário|usuários|usuarios|users|clientes?)/i);
     if (usersMatch) partial.usuarios = usersMatch[1].replace(/[.,\s]/g, '');
-    const concMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:simultâne|simultaneos|simultâneos|simultaneos|concurrentes|concurrent)/i);
+    const concMatch = text.match(/(\d{1,3}(?:[.,\s]?\d{3})*)\s*(?:simultâne|simultaneos|simultâneos|concurrentes|concurrent|simultaneous)/i);
     if (concMatch) partial.simultaneos = concMatch[1].replace(/[.,\s]/g, '');
 
     partial.resumo = String(text).trim();
